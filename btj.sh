@@ -10,6 +10,7 @@ set -x
 JOB_NAME="${1}"
 PROJECT_DIR="${2}"
 TARGET_DIR="${3}"
+shift 3
 
 Xvfb &
 X_PID=$!
