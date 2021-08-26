@@ -5,7 +5,7 @@
 # The following is a hack to workaround it. If there is a simpler way, never tell me.
 
 M2="/root/.m2/repository"
-export JAVA_HOME="/root/openjdk-8u292-b10"
+export JAVA_HOME="/tmp/jdk8u352-b08"
 export PATH="${JAVA_HOME}/bin:${PATH}"
 
 #### HACK STARTS HERE ####
@@ -52,7 +52,7 @@ zip -d "${M2}/org/eclipse/tycho/org.eclipse.osgi/3.10.0.v20140606-1445/org.eclip
 #### HACK STOPS HERE ####
 
 # Clone and build code-gen.
-cd /root
+cd /tmp
 git clone --depth 1 https://github.com/TalendStuff/code-gen.git
 cd code-gen
 mvn clean package

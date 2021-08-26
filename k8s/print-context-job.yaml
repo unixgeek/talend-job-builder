@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: talend-job-config
+  namespace: talend-jobs
+data:
+  user: some_user
+  host: some.example.com
+  port: '8000'
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: print-context
+  namespace: talend-jobs
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: print-context
+              image: unixgeek2/talend-job-builder-example:improvements # todo latest
+              env:
+                - name: USER
+                  valueFrom:
+                    configMapKeyRef:
+                      name: talend-job-config
+                      key: user
+                - name: PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: talend-job-secrets
+                      key: password
+          restartPolicy: OnFailure
+  schedule: "50 * * * *"

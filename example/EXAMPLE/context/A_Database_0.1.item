@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd">
+  <talendfile:ContextType xmi:id="_ZAZKQIblEe2SlZ5RYXY4PA" confirmationNeeded="false" name="NonProd">
+    <contextParameter xmi:id="_ZAZKQYblEe2SlZ5RYXY4PA" comment="" name="host" prompt="host?" promptNeeded="false" type="id_String" value="nonprod.example.com"/>
+    <contextParameter xmi:id="_ZAZKQoblEe2SlZ5RYXY4PA" comment="" name="port" prompt="port?" promptNeeded="false" type="id_Integer" value="3000"/>
+    <contextParameter xmi:id="_ZAZKQ4blEe2SlZ5RYXY4PA" comment="" name="user" prompt="user?" promptNeeded="false" type="id_String" value="bob"/>
+    <contextParameter xmi:id="_ZAZKRIblEe2SlZ5RYXY4PA" comment="" name="password" prompt="password?" promptNeeded="false" type="id_Password" value="enc:system.encryption.key.v1:7CRoP1K80dp79p9HoQqUdNErVhYfTCLoOBU1lwcn/w=="/>
+  </talendfile:ContextType>
+  <talendfile:ContextType xmi:id="_ZAZKRYblEe2SlZ5RYXY4PA" confirmationNeeded="false" name="Prod">
+    <contextParameter xmi:id="_ZAZKRoblEe2SlZ5RYXY4PA" comment="" name="host" prompt="host?" promptNeeded="false" type="id_String" value="prod.example.com"/>
+    <contextParameter xmi:id="_ZAZKR4blEe2SlZ5RYXY4PA" comment="" name="port" prompt="port?" promptNeeded="false" type="id_Integer" value="4000"/>
+    <contextParameter xmi:id="_ZAZKSIblEe2SlZ5RYXY4PA" comment="" name="user" prompt="user?" promptNeeded="false" type="id_String" value="ted"/>
+    <contextParameter xmi:id="_ZAZKSYblEe2SlZ5RYXY4PA" comment="" name="password" prompt="password?" promptNeeded="false" type="id_Password" value="enc:system.encryption.key.v1:rtzNy0FvkoA9AK7WCnwu0kHxzcOAdr30108X6RlrAB3H"/>
+  </talendfile:ContextType>
+</xmi:XMI>
