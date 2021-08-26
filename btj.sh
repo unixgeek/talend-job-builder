@@ -1,16 +1,23 @@
 #!/bin/sh -e
 
+if [ "$(basename "${0}")" != "btj.sh" ]; then
+    exec "$@"
+fi
+
 if [ $# -lt 3 ]; then
-    echo "usage: $(basename "${0}") JOB_NAME PROJECT_DIR TARGET_DIR [OPTIONAL_PARAMS]"
+    echo "usage: $(basename "${0}") JOB_NAME GIT_URL GIT_BRANCH [OPTIONAL_PARAMS]"
     exit 1
 fi
 
 set -x
 
+# todo specify branch or tag on url?
 JOB_NAME="${1}"
-PROJECT_DIR="${2}"
-TARGET_DIR="${3}"
+GIT_URL="${2}"
+GIT_BRANCH="${3}"
 shift 3
+
+git clone --depth 1 --branch "${GIT_BRANCH}" "${GIT_URL}" "${HOME}"/source
 
 Xvfb &
 X_PID=$!
@@ -19,11 +26,11 @@ export DISPLAY=:0
 /builder/TOS/TOS_DI-linux-gtk-x86_64 \
     -nosplash \
     --launcher.suppressErrors \
-    -data /builder/data \
+    -data "${HOME}"/data \
     -application au.org.emii.talend.codegen.Generator \
     -jobName "${JOB_NAME}" \
-    -projectDir "${PROJECT_DIR}" \
-    -targetDir "${TARGET_DIR}" \
+    -projectDir "${HOME}"/source \
+    -targetDir "${HOME}"/target \
     "$@"
 
 kill $X_PID
