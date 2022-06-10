@@ -11,7 +11,7 @@ based on the [code-gen](https://github.com/TalendStuff/code-gen/) project.
 
 ## Example
 ### Build a job in the current directory.
-    docker container run --rm -i -v "$(pwd)":/home/talend/target -t talend-job-builder PrintSomething https://github.com/unixgeek/TEST master  -needJobScript Unix
+    docker container run --rm -i -v "$(pwd)":/home/talend/target -t talend-job-builder PrintSomething https://github.com/unixgeek/TEST master -needJobScript Unix
 
 ## Notes
 * The entry point of the container is the btj.sh script, but it will also allow running any arbitrary command. This is

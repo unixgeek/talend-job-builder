@@ -17,13 +17,13 @@ GIT_URL="${2}"
 GIT_BRANCH="${3}"
 shift 3
 
-git clone --depth 1 --branch "${GIT_BRANCH}" "${GIT_URL}" "${HOME}"/source
+#git clone --depth 1 --branch "${GIT_BRANCH}" "${GIT_URL}" "${HOME}"/source
 
 Xvfb &
 X_PID=$!
 export DISPLAY=:0
 
-/builder/TOS/TOS_DI-linux-gtk-x86_64 \
+"${HOME}"/TOS/TOS_DI-linux-gtk-x86_64 \
     -nosplash \
     --launcher.suppressErrors \
     -data "${HOME}"/data \

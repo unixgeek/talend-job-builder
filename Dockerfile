@@ -22,17 +22,16 @@ FROM debian:bullseye-slim
 RUN apt-get update \
     && apt-get -y upgrade \
     && mkdir -p /usr/share/man/man1 \
-    && apt-get install -y --no-install-recommends git libgtk-3-dev openjdk-11-jdk-headless xvfb \
-    && mkdir /builder \
+    && apt-get install -y --no-install-recommends git libgtk-3-dev openjdk-11-jdk-headless xvfb maven \
     && groupadd -r talend \
-    && useradd -m -r -g talend talend # HOME is needed by Talend \
+    && useradd -m -r -g talend talend \
     && mkdir /home/talend/target \
     && chown talend:talend /home/talend/target # Needed for bind mount to be owned by the talend user.
 
-COPY --from=builder /tmp/TOS_DI-20200219_1130-V7.3.1 /builder/TOS
-COPY btj.sh /builder/btj.sh
-RUN chmod 0755 /builder/btj.sh
+COPY --from=builder --chown=talend:talend /tmp/TOS_DI-20200219_1130-V7.3.1 /home/talend/TOS
+COPY --chown=talend:talend btj.sh /home/talend/btj.sh
+RUN chmod 0755 /home/talend/btj.sh
 
 USER talend
 
-ENTRYPOINT ["/builder/btj.sh"]
+ENTRYPOINT ["/home/talend/btj.sh"]
