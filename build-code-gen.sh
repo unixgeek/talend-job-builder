@@ -10,15 +10,17 @@ export PATH="${JAVA_HOME}/bin:${PATH}"
 
 #### HACK STARTS HERE ####
 
-# Download the buggy artifact.
-mvn org.apache.maven.plugins:maven-dependency-plugin:2.1:get \
+echo "Downloading the buggy artifact..."
+mvn --batch-mode --quiet org.apache.maven.plugins:maven-dependency-plugin:2.1:get \
     -DrepoUrl=https://download.eclipse.org/releases/photon   \
     -Dartifact=org.eclipse.tycho:org.eclipse.osgi:3.10.0.v20140606-1445
 
 # Get the source code for the buggy part of the artifact above. Not sure about the version.
-git clone --depth 1 --branch I20140606-1215 https://eclipse.googlesource.com/equinox/rt.equinox.framework
+echo "Cloning source for the buggy artifact..."
+git clone --quiet --depth 1 --branch I20140606-1215 https://eclipse.googlesource.com/equinox/rt.equinox.framework
 
 # Fix the bug.
+echo "Patching/compiling/packaging buggy code..."
 cd rt.equinox.framework
 git apply --ignore-whitespace <<EOF
 --- a/bundles/org.eclipse.osgi/container/src/org/eclipse/osgi/internal/signedcontent/SignatureBlockProcessor.java
@@ -53,6 +55,8 @@ zip -d "${M2}/org/eclipse/tycho/org.eclipse.osgi/3.10.0.v20140606-1445/org.eclip
 
 # Clone and build code-gen.
 cd /tmp
-git clone --depth 1 https://github.com/TalendStuff/code-gen.git
+echo "Cloning code-gen..."
+git clone --quiet --depth 1 https://github.com/TalendStuff/code-gen.git
 cd code-gen
-mvn clean package
+echo "Building code-gen..."
+mvn --batch-mode --quiet clean package

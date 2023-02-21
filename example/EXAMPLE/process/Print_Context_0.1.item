@@ -2,13 +2,13 @@
 <talendfile:ProcessType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" defaultContext="NonProd" jobType="Standard">
   <context confirmationNeeded="false" name="NonProd">
     <contextParameter comment="" name="host" prompt="host?" promptNeeded="false" repositoryContextId="_UP0XMIblEe2SlZ5RYXY4PA" type="id_String" value="nonprod.example.com"/>
-    <contextParameter comment="" name="password" prompt="password?" promptNeeded="false" repositoryContextId="_UP0XMIblEe2SlZ5RYXY4PA" type="id_Password" value="enc:system.encryption.key.v1:WuiU2J+FpFhpClLabnnMS2YKi+9Tw0knyNgCuhlzZA=="/>
+    <contextParameter comment="" name="password" prompt="password?" promptNeeded="false" repositoryContextId="_UP0XMIblEe2SlZ5RYXY4PA" type="id_Password" value="enc:system.encryption.key.v1:81i2/Yp9O11j1XYl1uEjAaUaZBW/KTHnR0cwAuewTQ=="/>
     <contextParameter comment="" name="port" prompt="port?" promptNeeded="false" repositoryContextId="_UP0XMIblEe2SlZ5RYXY4PA" type="id_Integer" value="3000"/>
     <contextParameter comment="" name="user" prompt="user?" promptNeeded="false" repositoryContextId="_UP0XMIblEe2SlZ5RYXY4PA" type="id_String" value="bob"/>
   </context>
   <context confirmationNeeded="false" name="Prod">
     <contextParameter comment="" name="host" prompt="host?" promptNeeded="false" repositoryContextId="_UP0XMIblEe2SlZ5RYXY4PA" type="id_String" value="prod.example.com"/>
-    <contextParameter comment="" name="password" prompt="password?" promptNeeded="false" repositoryContextId="_UP0XMIblEe2SlZ5RYXY4PA" type="id_Password" value="enc:system.encryption.key.v1:xIR225Tw7vJBcCH4kFyQBpt71JmOYvYIrLdIklSJdCDn"/>
+    <contextParameter comment="" name="password" prompt="password?" promptNeeded="false" repositoryContextId="_UP0XMIblEe2SlZ5RYXY4PA" type="id_Password" value="enc:system.encryption.key.v1:Z0503dyGRgGpSQDsL+xvtFBePvy63R9Lrk+Jq8zw8MkB"/>
     <contextParameter comment="" name="port" prompt="port?" promptNeeded="false" repositoryContextId="_UP0XMIblEe2SlZ5RYXY4PA" type="id_Integer" value="4000"/>
     <contextParameter comment="" name="user" prompt="user?" promptNeeded="false" repositoryContextId="_UP0XMIblEe2SlZ5RYXY4PA" type="id_String" value="ted"/>
   </context>
@@ -53,7 +53,7 @@
     <elementParameter field="TEXT" name="PROPERTIES_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_DB_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="USER_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="enc:system.encryption.key.v1:hJHb9D1sTP1d/2Jmb7Dzc08AUR6VNg5jV1eQscKf" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="enc:system.encryption.key.v1:n8XP+BAj+VHnqprgjlDaOTbOsLD8ycIhK3jklHrN" show="false"/>
     <elementParameter field="FILE" name="DBFILE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="DBTABLE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="QUERY_CONDITION_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
@@ -88,7 +88,7 @@
     <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:2h/2KP3JLy28Vwpjq5eTzeqbqel4tQ3du+kRKFtb" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:H6dMr8poKOT387+2i1bePLxskA3VOQoPsmeW84zm" show="false"/>
     <elementParameter field="FILE" name="DBFILE" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE_STATS" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE_LOGS" value="&quot;&quot;" show="false"/>
@@ -117,7 +117,7 @@
     <routinesParameter id="_xPPGKobgEe2SlZ5RYXY4PA" name="TalendString"/>
     <routinesParameter id="_xPPGNIbgEe2SlZ5RYXY4PA" name="TalendStringUtil"/>
   </parameters>
-  <node componentName="tContextDump" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="224">
+  <node componentName="tContextDump" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="224" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tContextDump_1" show="false"/>
     <elementParameter field="CHECK" name="HIDE_PASSWORD" value="true"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -126,7 +126,7 @@
       <column defaultValue="" key="false" length="255" name="value" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="224">
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="448" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tLogRow_1" show="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
