@@ -16,8 +16,10 @@ HOME=/home/talend
 
 # Run a prebuild script if it exists.
 export JOB_NAME
-chmod 755 /home/talend/source/talend-job-builder/prebuild-setup.sh || true
-/home/talend/source/talend-job-builder/prebuild-setup.sh || true
+if [ -e /home/talend/source/talend-job-builder/prebuild-setup.sh ]; then
+    chmod 755 /home/talend/source/talend-job-builder/prebuild-setup.sh
+    /home/talend/source/talend-job-builder/prebuild-setup.sh
+fi
 
 # If there is a compilation error, it will be in this log file, but the container will
 # be destroyed, so it can't be viewed. Tail the log regardless of error so that the compilation
