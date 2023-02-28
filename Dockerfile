@@ -28,12 +28,13 @@ RUN apt-get update \
     && useradd -m -r -g talend -u 2000 talend \
     && mkdir /home/talend/target
 
-COPY --from=builder /tmp/TOS_DI-20200219_1130-V7.3.1 /home/talend/TOS
-COPY --from=builder /tmp/env-to-props                /home/talend
-COPY                build-talend-job.sh              /home/talend
-COPY                copy-jar-to-libraries.sh         /home/talend
-COPY                install-jar.sh                   /home/talend
-COPY                run_template.sh                  /home/talend
+COPY --from=builder /tmp/TOS_DI-20200219_1130-V7.3.1       /home/talend/TOS
+COPY --from=builder /tmp/env-to-props                      /home/talend
+COPY                build-talend-job.sh                    /home/talend
+COPY                copy-dependency-to-talend-libraries.sh /home/talend
+COPY                install-dependency-from-local.sh       /home/talend
+COPY                install-dependency-from-repo.sh        /home/talend
+COPY                run_template.sh                        /home/talend
 RUN chmod -R 0777 /home/talend
 
 USER talend
