@@ -2,7 +2,7 @@
 
 SELF=$(basename "${0}")
 
-if [ $# -ne 5 ]; then
+if [ $# -ne 4 ]; then
   echo "usage: ${SELF} TALEND_HOME ARTIFACT_ID LIBRARY_VERSION JAR_FILE"
   exit 1
 fi
