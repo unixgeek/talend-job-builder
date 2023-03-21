@@ -1,4 +1,8 @@
 #!/bin/sh -e
+# Copy a dependency installed into the talend maven repository to the org.talend.libraries groupId.
+# Based on observation, talend uses the org.talend.libraries groupId for dependencies used directly in a job. This
+# includes things like jdbc drivers and jars manually installed with a tLibraryLoad. For dependencies talend is already
+# aware of, the version is 6.0.0. For everything else, the verfsion is 6.0.0-SNAPSHOT.
 
 SELF=$(basename "${0}")
 

@@ -15,6 +15,7 @@ Talend Open Studio jobs, primarily in CI/CD.
 
 ### Compile Standalone
 
+    mkdir target
     docker container run --rm --user $(id -u):$(id -g) \
         --volume $(pwd):/home/talend/source \
         --volume $(pwd)/target:/home/talend/target \
@@ -29,7 +30,7 @@ There is an example Talend project in `example/EXAMPLE` that contains two jobs: 
 
 Build:
 
-    cd example/EXAMPLE
+    cd examples/talend/EXAMPLE
     docker image build --build-arg JOB_NAME=Print_Context \
         --build-arg CONTEXT_NAME=NonProd \
         --file talend-job-builder/Dockerfile \
@@ -39,7 +40,17 @@ Run using values provided in the job's context file:
 
     docker container run --rm print-context
 
-Run using environment variables to override values in the job's context file:
+A shell script is provided that reads environment variables and passes them to the job using Talend's `--context_param` 
+parameter. The key should be prefixed with `CONTEXT_`. The prefix will be stripped. This does have caveats related to 
+characters used in the value and the maximum argument length in the shell.
+
+    docker container run --rm \
+        --env CONTEXT_host=nonprod2.example.com \
+        print-context
+
+A small utility is provided that reads environment variables and updates the job's context with the values. The key 
+should be prefixed with `CONTEXT_`. The prefix will be stripped. This is a safer approach to the shell script mentioned 
+above. It does require specifying the location of the context file.
 
     docker container run --rm \
         --env CONTEXT="Print_Context/example/print_context_0_1/contexts/NonProd.properties" \
@@ -48,12 +59,12 @@ Run using environment variables to override values in the job's context file:
 
 #### Generate_Data
 
-This job requires an external jar to be installed. See `example/Example/talend-job-builder/prebuild-setup.sh` and
-`build-talend-job.sh` for how this works.
+This job requires an external jar to be installed. See `examples/talend/Example/talend-job-builder/prebuild-setup.sh` 
+and `builder/build-talend-job.sh` for how this works.
 
 Build:
 
-    cd example/EXAMPLE 
+    cd examples/talend/EXAMPLE 
     docker image build --build-arg JOB_NAME=Generate_Data \
         --build-arg CONTEXT_NAME=Default \
         --file talend-job-builder/Dockerfile \
@@ -63,7 +74,14 @@ Run:
 
     docker container run --rm generate-data
 
+## Talend Scripts
+The scripts in the `talend` directory can be used outside of this Docker process.
+
 ## Credits
 
 - [code-gen](https://github.com/TalendStuff/code-gen/)
 - The entrypoint.sh script was based on a script from a Talend expert named Steven.
+
+## Todo
+* check license
+* can distroless still be used somehow?

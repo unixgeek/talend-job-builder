@@ -1,4 +1,5 @@
 #!/bin/sh -e
+# Install a maven dependency to the talend maven repository from talend's nexus repository or maven central.
 
 SELF=$(basename "${0}")
 

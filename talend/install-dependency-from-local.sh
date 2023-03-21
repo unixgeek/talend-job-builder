@@ -1,4 +1,5 @@
 #!/bin/sh -e
+# Install a local jar file to the talend maven repository.
 
 SELF=$(basename "${0}")
 

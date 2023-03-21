@@ -20,17 +20,18 @@ spec:
         spec:
           containers:
             - name: print-context
-              image: unixgeek2/talend-job-builder-example:improvements # todo latest
+              image: print-context:latest
+              imagePullPolicy: Never
               env:
-                - name: USER
+                - name: CONTEXT_user
                   valueFrom:
                     configMapKeyRef:
                       name: talend-job-config
                       key: user
-                - name: PASSWORD
+                - name: CONTEXT_password
                   valueFrom:
                     secretKeyRef:
                       name: talend-job-secrets
                       key: password
           restartPolicy: OnFailure
-  schedule: "50 * * * *"
+  schedule: "0 * * * *"
