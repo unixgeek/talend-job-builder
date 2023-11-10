@@ -18,7 +18,7 @@ RUN /home/talend/build-talend-job.sh ${JOB_NAME} -contextName ${CONTEXT_NAME} \
 FROM debian:bullseye-20230208-slim
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends openjdk-11-jre-headless=11.0.18+10-1~deb11u1
+    && apt-get install -y --no-install-recommends openjdk-11-jre-headless
 
 COPY --from=builder /tmp/job            /job
 COPY --from=builder /home/talend/run.sh /job

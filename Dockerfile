@@ -29,11 +29,11 @@ FROM debian:bullseye-20230208-slim
 RUN apt-get update \
     && mkdir -p /usr/share/man/man1 \
     && apt-get install -y --no-install-recommends libgtk-3-0 xvfb openjdk-11-jdk-headless maven unzip dos2unix \
+    && mkdir -m 0777 /home/talend /home/talend/TOS \
     && groupadd -r talend -g 2000 \
-    && useradd -m -r -g talend -u 2000 talend \
-    && mkdir /home/talend/target
+    && useradd -m -r -g talend -u 2000 talend
 
-COPY --from=code-gen-builder /tmp/TOS_DI-20200219_1130-V7.3.1 /home/talend/TOS
+COPY --from=code-gen-builder --chmod=0777 /tmp/TOS_DI-20200219_1130-V7.3.1 /home/talend/TOS
 COPY --from=app-builder      /app/target/release/env-to-props /home/talend
 
 COPY talend/copy-dependency-to-talend-libraries.sh /home/talend
@@ -43,8 +43,6 @@ COPY talend/install-dependency-from-repo.sh        /home/talend
 COPY builder/build-talend-job.sh     /home/talend
 COPY builder/run-wrapper.sh          /home/talend
 COPY builder/env-to-context-param.sh /home/talend
-
-RUN chmod -R 0777 /home/talend
 
 USER talend
 
