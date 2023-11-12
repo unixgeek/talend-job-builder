@@ -5,13 +5,18 @@
 # Example
 # CONTEXT_user=app1 becomes --context_param=user=appp1
 
+SELF=$(basename "${0}")
+
 CONTEXT_PARAMS=$(printenv | grep ^CONTEXT_ | tr '\n' ';')
 IFS=";"
 for PARAM in ${CONTEXT_PARAMS}; do
   KEY=$(echo "${PARAM}" | cut -d '=' -f 1 | sed 's/^CONTEXT_//')
+  echo "${SELF}: Overriding ${KEY}"
   VALUE="$(echo "${PARAM}" | cut -d '=' -f 2)"
   ARGS="${ARGS}--context_param=${KEY}=${VALUE};"
 done
+
+echo "${SELF}: Running ${1}"
 
 # shellcheck disable=SC2086
 exec ./"${1}" ${ARGS} "$@"

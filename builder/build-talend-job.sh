@@ -1,8 +1,8 @@
 #!/bin/sh -e
 
 if [ $# -lt 1 ]; then
-    echo "usage: $(basename "${0}") JOB_NAME [OPTIONAL_PARAMS]"
-    exit 1
+  echo "usage: $(basename "${0}") JOB_NAME [OPTIONAL_PARAMS]"
+  exit 1
 fi
 
 JOB_NAME="${1}"
@@ -17,8 +17,9 @@ HOME=/home/talend
 # Run a prebuild script if it exists.
 export JOB_NAME
 if [ -e /home/talend/source/talend-job-builder/prebuild-setup.sh ]; then
-    chmod 755 /home/talend/source/talend-job-builder/prebuild-setup.sh
-    /home/talend/source/talend-job-builder/prebuild-setup.sh
+  cp /home/talend/source/talend-job-builder/prebuild-setup.sh /tmp
+  chmod 755 /tmp/prebuild-setup.sh
+  /tmp/prebuild-setup.sh
 fi
 
 # If there is a compilation error, it will be in this log file, but the container will
@@ -26,7 +27,6 @@ fi
 # step can be pid 1.
 tail --retry --follow /home/talend/data/.metadata/.log >&2 &
 
-# todo Should be exec.
 exec /home/talend/TOS/TOS_DI-linux-gtk-x86_64 \
     -nosplash \
     --launcher.suppressErrors \

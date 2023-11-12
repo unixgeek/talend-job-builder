@@ -5,8 +5,6 @@
 # The following is a hack to workaround it. If there is a simpler way, never tell me.
 
 M2="/root/.m2/repository"
-export JAVA_HOME="/tmp/jdk8u352-b08"
-export PATH="${JAVA_HOME}/bin:${PATH}"
 
 #### HACK STARTS HERE ####
 
@@ -59,4 +57,4 @@ echo "Cloning code-gen..."
 git clone --quiet --depth 1 https://github.com/TalendStuff/code-gen.git
 cd code-gen
 echo "Building code-gen..."
-mvn --batch-mode --quiet clean package
+mvn --threads 1C --batch-mode --quiet clean package

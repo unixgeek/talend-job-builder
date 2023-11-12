@@ -17,8 +17,12 @@ fn main() {
         .filter(|(key, _)| key.starts_with("CONTEXT_"))
         .for_each(|(key, value)| {
             let property_name = key.strip_prefix("CONTEXT_").expect("Stripping prefix");
-            println!("Overriding {property_name}");
-            context.insert(property_name.to_string(), value);
+            if context.contains_key(property_name) {
+                println!("{PKG_NAME}: Overriding {property_name}");
+                context.insert(property_name.to_string(), value);
+            } else {
+                println!("{PKG_NAME}: {property_name} was not found in context file");
+            }
         });
 
     let file = File::create(context_file).expect("Opening context file");

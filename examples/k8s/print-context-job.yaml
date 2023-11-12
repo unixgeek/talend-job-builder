@@ -4,9 +4,9 @@ metadata:
   name: talend-job-config
   namespace: talend-jobs
 data:
-  user: some_user
-  host: some.example.com
-  port: '8000'
+  user: "some_user"
+  host: "some.example.com"
+  port: "8000"
 ---
 apiVersion: batch/v1
 kind: CronJob
