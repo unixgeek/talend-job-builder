@@ -81,7 +81,7 @@ should be prefixed with `CONTEXT_`. The prefix will be stripped. This is a safer
 above. It does require specifying the location of the context file.
 ```shell
 docker container run --rm \
-    --env CONTEXT="Print_Context/example/print_context_0_1/contexts/NonProd.properties" \
+    --env CONTEXT=Print_Context/example/print_context_0_1/contexts/NonProd.properties \
     --env CONTEXT_host=nonprod2.example.com \
     print-context
 ```
