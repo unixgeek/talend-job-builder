@@ -28,21 +28,23 @@ random data.
 ### Print_Context
 Here we are specifying NonProd as the context to be set in the run script. Without specifying, it seems that Talend 
 sets the context to Default, even if that context does not exist.
-
-    docker container run --rm --user $(id -u):$(id -g) \
-        --volume $(pwd)/examples/talend/EXAMPLE:/home/talend/source \
-        --volume /tmp:/home/talend/target \
-        talend-job-builder Print_Context -contextName NonProd
+```shell
+docker container run --rm --user $(id -u):$(id -g) \
+    --volume $(pwd)/examples/talend/EXAMPLE:/home/talend/source \
+    --volume /tmp:/home/talend/target \
+    talend-job-builder Print_Context -contextName NonProd
+```
 
 ### Generate_Data
 This job requires an external jar to be installed into the Talend workspace. This usually gets installed from the 
 Talend UI, but that is not feasible here. See `examples/talend/Example/talend-job-builder/prebuild-setup.sh` 
 and `builder/build-talend-job.sh` for how this works.
-
-    docker container run --rm --user $(id -u):$(id -g) \
-        --volume $(pwd)/examples/talend/EXAMPLE:/home/talend/source \
-        --volume /tmp:/home/talend/target \
-        talend-job-builder Generate_Data
+```shell
+docker container run --rm --user $(id -u):$(id -g) \
+    --volume $(pwd)/examples/talend/EXAMPLE:/home/talend/source \
+    --volume /tmp:/home/talend/target \
+    talend-job-builder Generate_Data
+```
 
 ## Building as a Docker Image
 talend-job-builder can also be used as a stage in your Docker build. It isn't strictly required, but the shell script
@@ -56,44 +58,44 @@ talend-job-builder with the dependencies already installed and use that as the b
 
 #### Print_Context
 Build:
-
-    docker buildx build --build-arg JOB_NAME=Print_Context \
-        --build-arg CONTEXT_NAME=NonProd \
-        --file examples/talend/EXAMPLE/talend-job-builder/Dockerfile \
-        --tag print-context examples/talend/EXAMPLE
-
+```shell
+docker buildx build --build-arg JOB_NAME=Print_Context \
+    --build-arg CONTEXT_NAME=NonProd \
+    --file examples/talend/EXAMPLE/talend-job-builder/Dockerfile \
+    --tag print-context examples/talend/EXAMPLE
+```
 Run using values provided in the job's context file:
-
-    docker container run --rm print-context
-
+```shell
+docker container run --rm print-context
+````
 A shell script is provided that reads environment variables and passes them to the job using Talend's `--context_param` 
 parameter. The key should be prefixed with `CONTEXT_`. The prefix will be stripped. This does have caveats related to 
 characters used in the value and the maximum argument length in the shell.
-
-    docker container run --rm \
-        --env CONTEXT_host=nonprod2.example.com \
-        print-context
-
+```shell
+docker container run --rm --env CONTEXT_host=nonprod2.example.com print-context
+```
 A small utility is provided that reads environment variables and updates the job's context with the values. The key 
 should be prefixed with `CONTEXT_`. The prefix will be stripped. This is a safer approach to the shell script mentioned 
 above. It does require specifying the location of the context file.
-
-    docker container run --rm \
-        --env CONTEXT="Print_Context/example/print_context_0_1/contexts/NonProd.properties" \
-        --env CONTEXT_host=nonprod2.example.com \
-        print-context
+```shell
+docker container run --rm \
+    --env CONTEXT="Print_Context/example/print_context_0_1/contexts/NonProd.properties" \
+    --env CONTEXT_host=nonprod2.example.com \
+    print-context
+```
 
 #### Generate_Data
 Build:
-
-    docker buildx build --build-arg JOB_NAME=Generate_Data \
-        --build-arg CONTEXT_NAME=Default \
-        --file examples/talend/EXAMPLE/talend-job-builder/Dockerfile \
-        --tag generate-data examples/talend/EXAMPLE
-
+```shell
+docker buildx build --build-arg JOB_NAME=Generate_Data \
+    --build-arg CONTEXT_NAME=Default \
+    --file examples/talend/EXAMPLE/talend-job-builder/Dockerfile \
+    --tag generate-data examples/talend/EXAMPLE
+```
 Run:
-
-    docker container run --rm generate-data
+```shell
+docker container run --rm generate-data
+```
 
 ## Credits
 - [code-gen](https://github.com/TalendStuff/code-gen/)
